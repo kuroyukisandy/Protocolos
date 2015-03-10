@@ -9,6 +9,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using PcapDotNet.Core;
 using PcapDotNet.Packets;
+using PcapDotNet.Packets.IpV4;
+using PcapDotNet.Packets.Transport;
+using PcapDotNet.Core.Extensions;
+using PcapDotNet.Base;
 
 namespace Protocolos
 {
@@ -25,8 +29,6 @@ namespace Protocolos
 
         private void F_protocolos_Load(object sender, EventArgs e)
         {
-            
-
             if (interfaz.Count == 0)
             {
                 MessageBox.Show("No hay interfaces para mostrar");
@@ -50,12 +52,16 @@ namespace Protocolos
 
                 comunicador.ReceivePackets(0, PacketHandler);
             }
-
+            
         }
 
         private static void PacketHandler(Packet packet)
         {
-            Console.Write(packet.Timestamp.ToString("yyyy-MM-dd hh:mm:ss.fff") + " length: " + packet.Length);
+           // Console.WriteLine(packet.Timestamp.ToString("yyyy-MM-dd hh:mm:ss.fff") + " length:" + packet.Length);
+            IpV4Datagram ip = packet.Ethernet.IpV4;
+            UdpDatagram udp = ip.Udp;
+            Console.WriteLine("Numero de Paquetes: "+packet.Count+" Protocolos: "+ip.Protocol);
+            
         }
     }
 }
