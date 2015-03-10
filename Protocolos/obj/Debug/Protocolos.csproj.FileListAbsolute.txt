@@ -1,0 +1,24 @@
+c:\users\sandra\documents\visual studio 2012\Projects\Protocolos\Protocolos\bin\Debug\Protocolos.exe.config
+c:\users\sandra\documents\visual studio 2012\Projects\Protocolos\Protocolos\obj\Debug\Protocolos.csprojResolveAssemblyReference.cache
+c:\users\sandra\documents\visual studio 2012\Projects\Protocolos\Protocolos\obj\Debug\Protocolos.F_protocolos.resources
+c:\users\sandra\documents\visual studio 2012\Projects\Protocolos\Protocolos\obj\Debug\Protocolos.Properties.Resources.resources
+c:\users\sandra\documents\visual studio 2012\Projects\Protocolos\Protocolos\obj\Debug\Protocolos.csproj.GenerateResource.Cache
+c:\users\sandra\documents\visual studio 2012\Projects\Protocolos\Protocolos\bin\Debug\Protocolos.exe
+c:\users\sandra\documents\visual studio 2012\Projects\Protocolos\Protocolos\bin\Debug\Protocolos.pdb
+c:\users\sandra\documents\visual studio 2012\Projects\Protocolos\Protocolos\bin\Debug\PcapDotNet.Base.dll
+c:\users\sandra\documents\visual studio 2012\Projects\Protocolos\Protocolos\bin\Debug\PcapDotNet.Core.dll
+c:\users\sandra\documents\visual studio 2012\Projects\Protocolos\Protocolos\bin\Debug\PcapDotNet.Packets.dll
+c:\users\sandra\documents\visual studio 2012\Projects\Protocolos\Protocolos\bin\Debug\PcapDotNet.Base.pdb
+c:\users\sandra\documents\visual studio 2012\Projects\Protocolos\Protocolos\bin\Debug\PcapDotNet.Base.xml
+c:\users\sandra\documents\visual studio 2012\Projects\Protocolos\Protocolos\bin\Debug\PcapDotNet.Core.pdb
+c:\users\sandra\documents\visual studio 2012\Projects\Protocolos\Protocolos\bin\Debug\PcapDotNet.Core.xml
+c:\users\sandra\documents\visual studio 2012\Projects\Protocolos\Protocolos\bin\Debug\PcapDotNet.Packets.pdb
+c:\users\sandra\documents\visual studio 2012\Projects\Protocolos\Protocolos\bin\Debug\PcapDotNet.Packets.xml
+c:\users\sandra\documents\visual studio 2012\Projects\Protocolos\Protocolos\obj\Debug\Protocolos.exe
+c:\users\sandra\documents\visual studio 2012\Projects\Protocolos\Protocolos\obj\Debug\Protocolos.pdb
+C:\Users\SANDRA\Documents\Visual Studio 2012\Projects\Protocolos\Protocolos\bin\Debug\PcapDotNet.Core.Extensions.dll
+C:\Users\SANDRA\Documents\Visual Studio 2012\Projects\Protocolos\Protocolos\bin\Debug\PcapDotNet.Core.Extensions.pdb
+C:\Users\SANDRA\Documents\Visual Studio 2012\Projects\Protocolos\Protocolos\bin\Debug\PcapDotNet.Core.Extensions.xml
+C:\Users\SANDRA\Documents\GitHub\Protocolos\Protocolos\bin\Debug\Protocolos.exe.config
+C:\Users\SANDRA\Documents\GitHub\Protocolos\Protocolos\obj\Debug\Protocolos.exe
+C:\Users\SANDRA\Documents\GitHub\Protocolos\Protocolos\obj\Debug\Protocolos.pdb
