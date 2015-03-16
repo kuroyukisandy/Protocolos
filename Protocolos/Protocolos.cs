@@ -57,8 +57,15 @@ namespace Protocolos
         private void B_captar_Click(object sender, EventArgs e)
         {
             //Console.WriteLine(NetworkInterface.GetAllNetworkInterfaces());
-            hilo = new Thread(HiloPrincipal);
-            hilo.Start();
+            if (CB_Interfaz.SelectedIndex == -1)
+            {
+                MessageBox.Show("Seleccione una interfaz");
+            }
+            else
+            {
+                hilo = new Thread(HiloPrincipal);
+                hilo.Start();
+            }
             
         }
 
@@ -67,10 +74,13 @@ namespace Protocolos
                 IpV4Datagram ip = packet.Ethernet.IpV4;
                 UdpDatagram udp = ip.Udp;
                 //Console.WriteLine("Numero de Paquetes: "+packet.Count+" Protocolos: "+ip.Protocol);
-                if (!ip.Protocol.Equals("ServiceSpecificConnectionOrientedProtocolInAMultilinkAndConnectionlessEnvironment"))
-                {
-                    TB_datos.AppendText("Numero de Paquetes: " + packet.Count + " Protocolos: " + ip.Protocol + " Ip Origen: " + ip.Source + " Ip Destino: " + ip.Destination + "\n");
-                }
+            if(IpV4Protocol.ServiceSpecificConnectionOrientedProtocolInAMultilinkAndConnectionlessEnvironment!= ip.Protocol){
+                TB_datos.AppendText("Numero de Paquetes: " + packet.Count + " Protocolos: " + ip.Protocol + " Ip Origen: " + ip.Source + " Ip Destino: " + ip.Destination + "\n");
+            }
+
+
+            //protocolo.
+
         }
 
         //delegate void PacketHandlerDelegado(Packet packet);
@@ -78,6 +88,7 @@ namespace Protocolos
         private void HiloPrincipal() {
             PB_tiempo.Style = ProgressBarStyle.Marquee;
             selectindex = interfaz[CB_Interfaz.SelectedIndex];
+            Grafprot();
             using (PacketCommunicator comunicador = selectindex.Open(65536, PacketDeviceOpenAttributes.Promiscuous, 1000))
             {
                 Console.WriteLine("Capturando de: " + selectindex.Description);
@@ -85,8 +96,16 @@ namespace Protocolos
                 comunicador.ReceivePackets(0, PacketHandler);
 
             }
-            
+
+
            // Protocolos.F_protocolos.
         }
+
+
+        private void Grafprot() 
+        {
+            textBox1.Text="hilos";
+        }
+
     }
 }

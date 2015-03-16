@@ -28,15 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend7 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend8 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea9 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend9 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.B_buscar = new System.Windows.Forms.Button();
             this.B_captar = new System.Windows.Forms.Button();
             this.CH_io = new System.Windows.Forms.DataVisualization.Charting.Chart();
@@ -51,6 +51,7 @@
             this.TP_io = new System.Windows.Forms.TabPage();
             this.TP_protocolos = new System.Windows.Forms.TabPage();
             this.CH_protocolos = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.CH_io)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CH_flujo)).BeginInit();
             this.TC_operacion.SuspendLayout();
@@ -70,6 +71,7 @@
             this.B_buscar.TabIndex = 0;
             this.B_buscar.Text = "buscar";
             this.B_buscar.UseVisualStyleBackColor = true;
+            this.B_buscar.Visible = false;
             // 
             // B_captar
             // 
@@ -83,16 +85,16 @@
             // 
             // CH_io
             // 
-            chartArea7.Name = "ChartArea1";
-            this.CH_io.ChartAreas.Add(chartArea7);
-            legend7.Name = "Legend1";
-            this.CH_io.Legends.Add(legend7);
+            chartArea1.Name = "ChartArea1";
+            this.CH_io.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.CH_io.Legends.Add(legend1);
             this.CH_io.Location = new System.Drawing.Point(18, 28);
             this.CH_io.Name = "CH_io";
-            series7.ChartArea = "ChartArea1";
-            series7.Legend = "Legend1";
-            series7.Name = "Series1";
-            this.CH_io.Series.Add(series7);
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.CH_io.Series.Add(series1);
             this.CH_io.Size = new System.Drawing.Size(871, 312);
             this.CH_io.TabIndex = 2;
             this.CH_io.Text = "chart1";
@@ -108,16 +110,16 @@
             // 
             // CH_flujo
             // 
-            chartArea8.Name = "ChartArea1";
-            this.CH_flujo.ChartAreas.Add(chartArea8);
-            legend8.Name = "Legend1";
-            this.CH_flujo.Legends.Add(legend8);
+            chartArea2.Name = "ChartArea1";
+            this.CH_flujo.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.CH_flujo.Legends.Add(legend2);
             this.CH_flujo.Location = new System.Drawing.Point(6, 19);
             this.CH_flujo.Name = "CH_flujo";
-            series8.ChartArea = "ChartArea1";
-            series8.Legend = "Legend1";
-            series8.Name = "Series1";
-            this.CH_flujo.Series.Add(series8);
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.CH_flujo.Series.Add(series2);
             this.CH_flujo.Size = new System.Drawing.Size(867, 317);
             this.CH_flujo.TabIndex = 4;
             this.CH_flujo.Text = "chart2";
@@ -195,6 +197,7 @@
             // 
             // TP_protocolos
             // 
+            this.TP_protocolos.Controls.Add(this.textBox1);
             this.TP_protocolos.Controls.Add(this.CH_protocolos);
             this.TP_protocolos.Location = new System.Drawing.Point(4, 22);
             this.TP_protocolos.Name = "TP_protocolos";
@@ -206,19 +209,25 @@
             // 
             // CH_protocolos
             // 
-            chartArea9.Name = "ChartArea1";
-            this.CH_protocolos.ChartAreas.Add(chartArea9);
-            legend9.Name = "Legend1";
-            this.CH_protocolos.Legends.Add(legend9);
-            this.CH_protocolos.Location = new System.Drawing.Point(18, 6);
+            chartArea3.Name = "ChartArea1";
+            this.CH_protocolos.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.CH_protocolos.Legends.Add(legend3);
+            this.CH_protocolos.Location = new System.Drawing.Point(18, 55);
             this.CH_protocolos.Name = "CH_protocolos";
-            series9.ChartArea = "ChartArea1";
-            series9.Legend = "Legend1";
-            series9.Name = "Series1";
-            this.CH_protocolos.Series.Add(series9);
-            this.CH_protocolos.Size = new System.Drawing.Size(862, 344);
+            series3.ChartArea = "ChartArea1";
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            this.CH_protocolos.Series.Add(series3);
+            this.CH_protocolos.Size = new System.Drawing.Size(862, 295);
             this.CH_protocolos.TabIndex = 0;
-            this.CH_protocolos.Text = "chart1";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(222, 29);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.TabIndex = 1;
             // 
             // F_protocolos
             // 
@@ -240,6 +249,7 @@
             this.TP_flujo.ResumeLayout(false);
             this.TP_io.ResumeLayout(false);
             this.TP_protocolos.ResumeLayout(false);
+            this.TP_protocolos.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CH_protocolos)).EndInit();
             this.ResumeLayout(false);
 
@@ -261,6 +271,7 @@
         private System.Windows.Forms.DataVisualization.Charting.Chart CH_protocolos;
         private System.Windows.Forms.ProgressBar PB_tiempo;
         private System.Windows.Forms.NumericUpDown NUD_mins;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
 
