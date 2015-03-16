@@ -50,8 +50,8 @@
             this.TP_flujo = new System.Windows.Forms.TabPage();
             this.TP_io = new System.Windows.Forms.TabPage();
             this.TP_protocolos = new System.Windows.Forms.TabPage();
-            this.CH_protocolos = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.CH_protocolos = new System.Windows.Forms.DataVisualization.Charting.Chart();
             ((System.ComponentModel.ISupportInitialize)(this.CH_io)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CH_flujo)).BeginInit();
             this.TC_operacion.SuspendLayout();
@@ -92,12 +92,12 @@
             this.CH_io.Location = new System.Drawing.Point(18, 28);
             this.CH_io.Name = "CH_io";
             series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area;
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.CH_io.Series.Add(series1);
             this.CH_io.Size = new System.Drawing.Size(871, 312);
             this.CH_io.TabIndex = 2;
-            this.CH_io.Text = "chart1";
             // 
             // TB_datos
             // 
@@ -207,6 +207,13 @@
             this.TP_protocolos.Text = "Protocolos";
             this.TP_protocolos.UseVisualStyleBackColor = true;
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(222, 29);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.TabIndex = 1;
+            // 
             // CH_protocolos
             // 
             chartArea3.Name = "ChartArea1";
@@ -221,13 +228,6 @@
             this.CH_protocolos.Series.Add(series3);
             this.CH_protocolos.Size = new System.Drawing.Size(862, 295);
             this.CH_protocolos.TabIndex = 0;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(222, 29);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 1;
             // 
             // F_protocolos
             // 

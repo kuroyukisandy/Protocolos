@@ -1,18 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using PcapDotNet.Core;
 using PcapDotNet.Packets;
 using PcapDotNet.Packets.IpV4;
 using PcapDotNet.Packets.Transport;
-using PcapDotNet.Core.Extensions;
-using PcapDotNet.Base;
 using System.Threading;
 using System.Net.NetworkInformation;
 using System.Windows.Forms.DataVisualization.Charting;
@@ -28,7 +20,7 @@ namespace Protocolos
         private PacketDevice selectindex;
         Series protocolo = new Series();
         private Thread hilo;
-
+        int x = 0;
         public F_protocolos()
         {
             InitializeComponent();
@@ -73,6 +65,7 @@ namespace Protocolos
         {
                 IpV4Datagram ip = packet.Ethernet.IpV4;
                 UdpDatagram udp = ip.Udp;
+                GrafIO(packet.Count);
                 //Console.WriteLine("Numero de Paquetes: "+packet.Count+" Protocolos: "+ip.Protocol);
             if(IpV4Protocol.ServiceSpecificConnectionOrientedProtocolInAMultilinkAndConnectionlessEnvironment!= ip.Protocol){
                 TB_datos.AppendText("Numero de Paquetes: " + packet.Count + " Protocolos: " + ip.Protocol + " Ip Origen: " + ip.Source + " Ip Destino: " + ip.Destination + "\n");
@@ -99,6 +92,18 @@ namespace Protocolos
 
 
            // Protocolos.F_protocolos.
+        }
+
+        private void GrafIO(int bytes)
+        {
+            if (CH_io.Series[0].Points.Count > 30)
+            {
+                CH_io.Series[0].Points.RemoveAt(0);
+                CH_io.Update();
+            }
+
+            CH_io.Series[0].Points.AddXY(x++,bytes);
+            
         }
 
 
