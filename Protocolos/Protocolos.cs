@@ -8,6 +8,7 @@ using PcapDotNet.Packets.Transport;
 using System.Threading;
 using System.Net.NetworkInformation;
 using System.Windows.Forms.DataVisualization.Charting;
+using System.Collections;
 
 
 namespace Protocolos
@@ -17,6 +18,7 @@ namespace Protocolos
 
         IList<LivePacketDevice> interfaz = LivePacketDevice.AllLocalMachine;
         IList<NetworkInterface> nint = NetworkInterface.GetAllNetworkInterfaces();
+        Hashtable htProtocolos = new Hashtable();
         private PacketDevice selectindex;
         Series protocolo = new Series();
         private Thread hilo;
@@ -69,6 +71,17 @@ namespace Protocolos
                 //Console.WriteLine("Numero de Paquetes: "+packet.Count+" Protocolos: "+ip.Protocol);
             if(IpV4Protocol.ServiceSpecificConnectionOrientedProtocolInAMultilinkAndConnectionlessEnvironment!= ip.Protocol){
                 TB_datos.AppendText("Numero de Paquetes: " + packet.Count + " Protocolos: " + ip.Protocol + " Ip Origen: " + ip.Source + " Ip Destino: " + ip.Destination + "\n");
+                if (!htProtocolos.ContainsKey(ip.Protocol))
+                {
+                    htProtocolos.Add(ip.Protocol, 1);
+                }
+                else
+                {
+                    htProtocolos[ip.Protocol] = int.Parse(htProtocolos[ip.Protocol].ToString()) + 1;
+                    Console.WriteLine(ip.Protocol+"_-_"+htProtocolos[ip.Protocol]);
+                    Console.WriteLine(htProtocolos.Keys.ToString());
+                }
+                Grafprot();
             }
 
 
@@ -79,8 +92,9 @@ namespace Protocolos
         //delegate void PacketHandlerDelegado(Packet packet);
 
         private void HiloPrincipal() {
-            PB_tiempo.Style = ProgressBarStyle.Marquee;
             selectindex = interfaz[CB_Interfaz.SelectedIndex];
+            //PB_tiempo.Style = ProgressBarStyle.Marquee;
+            Thread.Sleep(1000);
             Grafprot();
             using (PacketCommunicator comunicador = selectindex.Open(65536, PacketDeviceOpenAttributes.Promiscuous, 1000))
             {
@@ -89,9 +103,6 @@ namespace Protocolos
                 comunicador.ReceivePackets(0, PacketHandler);
 
             }
-
-
-           // Protocolos.F_protocolos.
         }
 
         private void GrafIO(int bytes)
@@ -109,7 +120,22 @@ namespace Protocolos
 
         private void Grafprot() 
         {
-            textBox1.Text="hilos";
+           CH_protocolos.Series[0].Points.Clear();
+           foreach(DictionaryEntry ht in htProtocolos)
+           {
+               CH_protocolos.Series[0].Points.AddXY(ht.Key.ToString(), ht.Value);
+           }
+        }
+
+        private void F_protocolos_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            try
+            {
+                hilo.Abort();
+            }
+            catch { }
+            
+            DialogResult salir = MessageBox.Show("Salir","Seguro desea salir",MessageBoxButtons.YesNo);
         }
 
     }
