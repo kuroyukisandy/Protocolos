@@ -9,6 +9,7 @@ using System.Threading;
 using System.Net.NetworkInformation;
 using System.Windows.Forms.DataVisualization.Charting;
 using System.Collections;
+using System.Net.NetworkInformation;
 
 
 namespace Protocolos
@@ -19,14 +20,16 @@ namespace Protocolos
         IList<LivePacketDevice> interfaz = LivePacketDevice.AllLocalMachine;
         IList<NetworkInterface> nint = NetworkInterface.GetAllNetworkInterfaces();
         Hashtable htProtocolos = new Hashtable();
+        Hashtable htIps = new Hashtable();
         private PacketDevice selectindex;
+        private NetworkInterface index;
         Series protocolo = new Series();
         private Thread hilo;
         int x = 0;
         public F_protocolos()
         {
             InitializeComponent();
-            protocolo.ChartType = SeriesChartType.Pie;
+            protocolo.ChartType = SeriesChartType.Doughnut;
             TextBox.CheckForIllegalCrossThreadCalls = false;
             ProgressBar.CheckForIllegalCrossThreadCalls = false;
         }
@@ -70,7 +73,7 @@ namespace Protocolos
                 GrafIO(packet.Count);
                 //Console.WriteLine("Numero de Paquetes: "+packet.Count+" Protocolos: "+ip.Protocol);
             if(IpV4Protocol.ServiceSpecificConnectionOrientedProtocolInAMultilinkAndConnectionlessEnvironment!= ip.Protocol){
-                TB_datos.AppendText("Numero de Paquetes: " + packet.Count + " Protocolos: " + ip.Protocol + " Ip Origen: " + ip.Source + " Ip Destino: " + ip.Destination + "\n");
+                TB_datos.AppendText("Numero de Paquetes: " + packet.Count + " Protocolos: " + ip.Protocol + " Ip Origen: " + ip.Source + " Ip Destino: " + ip.Destination +" Velocidad: " +index.Speed/1000000 +"Mbs" + "\n");
                 if (!htProtocolos.ContainsKey(ip.Protocol))
                 {
                     htProtocolos.Add(ip.Protocol, 1);
@@ -78,10 +81,20 @@ namespace Protocolos
                 else
                 {
                     htProtocolos[ip.Protocol] = int.Parse(htProtocolos[ip.Protocol].ToString()) + 1;
-                    Console.WriteLine(ip.Protocol+"_-_"+htProtocolos[ip.Protocol]);
-                    Console.WriteLine(htProtocolos.Keys.ToString());
+                    //Console.WriteLine(ip.Protocol+"_-_"+htProtocolos[ip.Protocol]);
+                    //Console.WriteLine(htProtocolos.Keys.ToString());
                 }
                 Grafprot();
+
+                if (!htIps.ContainsKey(ip.Source))
+                {
+                    htIps.Add(ip.Source, ip.Destination);
+                }
+                else
+                {
+                    htIps[ip.Source] = htIps[ip.Source];
+                    Console.WriteLine(ip.Source+"-"+htIps.Keys);
+                }
             }
 
 
@@ -93,13 +106,14 @@ namespace Protocolos
 
         private void HiloPrincipal() {
             selectindex = interfaz[CB_Interfaz.SelectedIndex];
+            index=nint[CB_Interfaz.SelectedIndex];
             //PB_tiempo.Style = ProgressBarStyle.Marquee;
             Thread.Sleep(1000);
             Grafprot();
             using (PacketCommunicator comunicador = selectindex.Open(65536, PacketDeviceOpenAttributes.Promiscuous, 1000))
             {
                 Console.WriteLine("Capturando de: " + selectindex.Description);
-
+                Console.WriteLine("Capturando de: " + index.Speed/1000000);
                 comunicador.ReceivePackets(0, PacketHandler);
 
             }
@@ -127,6 +141,13 @@ namespace Protocolos
            }
         }
 
+        private void Grafflow()
+        {
+
+            //agregar una label con una ip nueva
+            //agregar una linea con starcap roundanchor endcap arrowanchor
+        }
+
         private void F_protocolos_FormClosing(object sender, FormClosingEventArgs e)
         {
             try
@@ -137,6 +158,8 @@ namespace Protocolos
             
             DialogResult salir = MessageBox.Show("Salir","Seguro desea salir",MessageBoxButtons.YesNo);
         }
+
+ 
 
     }
 }
