@@ -11,6 +11,7 @@ using System.Windows.Forms.DataVisualization.Charting;
 using System.Collections;
 using System.Net.NetworkInformation;
 using System.Data;
+using PcapDotNet.Packets.IpV6;
 
 
 namespace Protocolos
@@ -71,6 +72,9 @@ namespace Protocolos
             }
             else
             {
+                B_Pausar.Visible = true;
+                B_captar.Visible = false;
+                Time_Graf.Enabled = true;
                 hilo = new Thread(HiloPrincipal);
                 hilo.Start();
             }
@@ -80,11 +84,27 @@ namespace Protocolos
         private void PacketHandler(Packet packet)
         {
                 IpV4Datagram ip = packet.Ethernet.IpV4;
+                IpV6Datagram ip6 = packet.Ethernet.IpV6;
                 UdpDatagram udp = ip.Udp;
                 GrafIO(packet.Count);
+
+                Console.WriteLine(packet.DataLink.Kind);
                 //Console.WriteLine("Numero de Paquetes: "+packet.Count+" Protocolos: "+ip.Protocol);
             if(IpV4Protocol.ServiceSpecificConnectionOrientedProtocolInAMultilinkAndConnectionlessEnvironment!= ip.Protocol){
-                TB_datos.AppendText("Numero de Paquetes: " + packet.Count + " Protocolos: " + ip.Protocol + " Ip Origen: " + ip.Source + " Ip Destino: " + ip.Destination +" Velocidad: " +index.Speed/1000000 +"Mbs" + "\n");
+                TB_datos.AppendText("Numero de Paquetes: " + packet.Count + " Protocolos: " + ip.Protocol + " Ip Origen: " + ip.Source + " Ip Destino: " + ip.Destination + "\n");
+                try{
+                    TB_datos.AppendText("Numero de Paquetes: " + packet.Count + " Protocolos: " + ip6.IpV4.Protocol + " Ip Origen: " + ip6.Source + " Ip Destino: " + ip6.CurrentDestination +"\n");
+                    if (!htProtocolos.ContainsKey(ip6.IpV4.Protocol))
+                    {
+                        htProtocolos.Add(ip6.IpV4.Protocol, 1);
+                    }
+                    else
+                    {
+                        htProtocolos[ip6.IpV4.Protocol] = int.Parse(htProtocolos[ip6.IpV4.Protocol].ToString()) + 1;
+                    }
+                }
+                catch{}
+                
                 if (!htProtocolos.ContainsKey(ip.Protocol))
                 {
                     htProtocolos.Add(ip.Protocol, 1);
@@ -118,7 +138,7 @@ namespace Protocolos
             index=nint[CB_Interfaz.SelectedIndex];
             //PB_tiempo.Style = ProgressBarStyle.Marquee;
             Thread.Sleep(1000);
-            Grafprot();
+            //Grafprot();
             using (PacketCommunicator comunicador = selectindex.Open(65536, PacketDeviceOpenAttributes.Promiscuous, 1000))
             {
                 Console.WriteLine("Capturando de: " + selectindex.Description);
@@ -166,6 +186,27 @@ namespace Protocolos
             catch { }
             
             DialogResult salir = MessageBox.Show("Salir","Seguro desea salir",MessageBoxButtons.YesNo);
+        }
+
+        private void Time_Graf_Tick(object sender, EventArgs e)
+        {
+            Grafprot();
+        }
+
+        private void B_Pausar_Click(object sender, EventArgs e)
+        {
+            B_Pausar.Visible = false;
+            B_captar.Visible = true;
+            try
+            {
+                hilo.Abort();
+            }
+            catch { }
+        }
+
+        private void B_Actualizar_Click(object sender, EventArgs e)
+        {
+            //CH_protocolos.
         }
 
  
