@@ -48,10 +48,12 @@
             this.TP_protocolos = new System.Windows.Forms.TabPage();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.CH_protocolos = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.LB_flow = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.CH_io)).BeginInit();
             this.TC_operacion.SuspendLayout();
             this.TP_paquetes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NUD_mins)).BeginInit();
+            this.TP_flujo.SuspendLayout();
             this.TP_io.SuspendLayout();
             this.TP_protocolos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CH_protocolos)).BeginInit();
@@ -153,6 +155,7 @@
             // 
             // TP_flujo
             // 
+            this.TP_flujo.Controls.Add(this.LB_flow);
             this.TP_flujo.Location = new System.Drawing.Point(4, 22);
             this.TP_flujo.Name = "TP_flujo";
             this.TP_flujo.Padding = new System.Windows.Forms.Padding(3);
@@ -207,6 +210,14 @@
             this.CH_protocolos.Size = new System.Drawing.Size(862, 295);
             this.CH_protocolos.TabIndex = 0;
             // 
+            // LB_flow
+            // 
+            this.LB_flow.FormattingEnabled = true;
+            this.LB_flow.Location = new System.Drawing.Point(149, 24);
+            this.LB_flow.Name = "LB_flow";
+            this.LB_flow.Size = new System.Drawing.Size(617, 316);
+            this.LB_flow.TabIndex = 0;
+            // 
             // F_protocolos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -224,6 +235,7 @@
             this.TP_paquetes.ResumeLayout(false);
             this.TP_paquetes.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NUD_mins)).EndInit();
+            this.TP_flujo.ResumeLayout(false);
             this.TP_io.ResumeLayout(false);
             this.TP_protocolos.ResumeLayout(false);
             this.TP_protocolos.PerformLayout();
@@ -248,6 +260,7 @@
         private System.Windows.Forms.ProgressBar PB_tiempo;
         private System.Windows.Forms.NumericUpDown NUD_mins;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.ListBox LB_flow;
     }
 }
 

@@ -10,6 +10,7 @@ using System.Net.NetworkInformation;
 using System.Windows.Forms.DataVisualization.Charting;
 using System.Collections;
 using System.Net.NetworkInformation;
+using System.Data;
 
 
 namespace Protocolos
@@ -20,7 +21,10 @@ namespace Protocolos
         IList<LivePacketDevice> interfaz = LivePacketDevice.AllLocalMachine;
         IList<NetworkInterface> nint = NetworkInterface.GetAllNetworkInterfaces();
         Hashtable htProtocolos = new Hashtable();
-        Hashtable htIps = new Hashtable();
+        DataTable dtIps = new DataTable();
+        DataColumn idFuente;
+        DataColumn idDestino;
+        DataRow filaIp;
         private PacketDevice selectindex;
         private NetworkInterface index;
         Series protocolo = new Series();
@@ -48,6 +52,13 @@ namespace Protocolos
                 LivePacketDevice inter = interfaz[i];
                 CB_Interfaz.Items.Add(inter.Description);
             }
+
+            idFuente = new DataColumn();
+            idDestino = new DataColumn();
+            idFuente.ColumnName = "Id Origen";
+            idDestino.ColumnName = "Id Destino";
+            dtIps.Columns.Add(idFuente);
+            dtIps.Columns.Add(idDestino);
 
         }
 
@@ -84,17 +95,15 @@ namespace Protocolos
                     //Console.WriteLine(ip.Protocol+"_-_"+htProtocolos[ip.Protocol]);
                     //Console.WriteLine(htProtocolos.Keys.ToString());
                 }
-                Grafprot();
+                   Grafprot();
 
-                if (!htIps.ContainsKey(ip.Source))
-                {
-                    htIps.Add(ip.Source, ip.Destination);
-                }
-                else
-                {
-                    htIps[ip.Source] = htIps[ip.Source];
-                    Console.WriteLine(ip.Source+"-"+htIps.Keys);
-                }
+                   filaIp = dtIps.NewRow();
+                   filaIp["Id Origen"] = ip.Source;
+                   filaIp["Id Destino"] = ip.Destination;
+
+                   dtIps.Rows.Add(filaIp);
+
+                   LB_flow.Items.Add(ip.Source+"------>"+ip.Destination);
             }
 
 
@@ -143,7 +152,7 @@ namespace Protocolos
 
         private void Grafflow()
         {
-
+            
             //agregar una label con una ip nueva
             //agregar una linea con starcap roundanchor endcap arrowanchor
         }
