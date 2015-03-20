@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.B_buscar = new System.Windows.Forms.Button();
             this.B_captar = new System.Windows.Forms.Button();
             this.CH_io = new System.Windows.Forms.DataVisualization.Charting.Chart();
@@ -84,17 +84,17 @@
             // 
             // CH_io
             // 
-            chartArea1.Name = "ChartArea1";
-            this.CH_io.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.CH_io.Legends.Add(legend1);
+            chartArea3.Name = "ChartArea1";
+            this.CH_io.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.CH_io.Legends.Add(legend3);
             this.CH_io.Location = new System.Drawing.Point(18, 6);
             this.CH_io.Name = "CH_io";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area;
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.CH_io.Series.Add(series1);
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area;
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            this.CH_io.Series.Add(series3);
             this.CH_io.Size = new System.Drawing.Size(871, 334);
             this.CH_io.TabIndex = 2;
             // 
@@ -199,18 +199,19 @@
             // 
             // CH_protocolos
             // 
-            chartArea2.Name = "ChartArea1";
-            this.CH_protocolos.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.CH_protocolos.Legends.Add(legend2);
+            chartArea4.Name = "ChartArea1";
+            this.CH_protocolos.ChartAreas.Add(chartArea4);
+            legend4.Name = "Legend1";
+            this.CH_protocolos.Legends.Add(legend4);
             this.CH_protocolos.Location = new System.Drawing.Point(3, 36);
             this.CH_protocolos.Name = "CH_protocolos";
             this.CH_protocolos.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Bright;
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Bar;
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.CH_protocolos.Series.Add(series2);
+            series4.ChartArea = "ChartArea1";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series4.Legend = "Legend1";
+            series4.Name = "Series1";
+            series4.YValuesPerPoint = 2;
+            this.CH_protocolos.Series.Add(series4);
             this.CH_protocolos.Size = new System.Drawing.Size(912, 314);
             this.CH_protocolos.TabIndex = 0;
             // 
@@ -221,7 +222,7 @@
             // 
             // B_Pausar
             // 
-            this.B_Pausar.Location = new System.Drawing.Point(498, 71);
+            this.B_Pausar.Location = new System.Drawing.Point(417, 71);
             this.B_Pausar.Name = "B_Pausar";
             this.B_Pausar.Size = new System.Drawing.Size(75, 23);
             this.B_Pausar.TabIndex = 7;

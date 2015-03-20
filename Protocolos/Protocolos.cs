@@ -88,10 +88,9 @@ namespace Protocolos
                 UdpDatagram udp = ip.Udp;
                 GrafIO(packet.Count);
 
-                Console.WriteLine(packet.DataLink.Kind);
-                //Console.WriteLine("Numero de Paquetes: "+packet.Count+" Protocolos: "+ip.Protocol);
+                
             if(IpV4Protocol.ServiceSpecificConnectionOrientedProtocolInAMultilinkAndConnectionlessEnvironment!= ip.Protocol){
-                TB_datos.AppendText("Numero de Paquetes: " + packet.Count + " Protocolos: " + ip.Protocol + " Ip Origen: " + ip.Source + " Ip Destino: " + ip.Destination + "\n");
+                TB_datos.AppendText("Numero de Bytes: " + packet.Count + " Protocolos: " + ip.Protocol + " Ip Origen: " + ip.Source + " Ip Destino: " + ip.Destination + "\n");
                 try{
                     TB_datos.AppendText("Numero de Paquetes: " + packet.Count + " Protocolos: " + ip6.IpV4.Protocol + " Ip Origen: " + ip6.Source + " Ip Destino: " + ip6.CurrentDestination +"\n");
                     if (!htProtocolos.ContainsKey(ip6.IpV4.Protocol))
@@ -115,7 +114,7 @@ namespace Protocolos
                     //Console.WriteLine(ip.Protocol+"_-_"+htProtocolos[ip.Protocol]);
                     //Console.WriteLine(htProtocolos.Keys.ToString());
                 }
-                   Grafprot();
+                   //Grafprot();
 
                    filaIp = dtIps.NewRow();
                    filaIp["Id Origen"] = ip.Source;
@@ -141,10 +140,7 @@ namespace Protocolos
             //Grafprot();
             using (PacketCommunicator comunicador = selectindex.Open(65536, PacketDeviceOpenAttributes.Promiscuous, 1000))
             {
-                Console.WriteLine("Capturando de: " + selectindex.Description);
-                Console.WriteLine("Capturando de: " + index.Speed/1000000);
                 comunicador.ReceivePackets(0, PacketHandler);
-
             }
         }
 
@@ -206,6 +202,7 @@ namespace Protocolos
 
         private void B_Actualizar_Click(object sender, EventArgs e)
         {
+            Grafprot();
             //CH_protocolos.
         }
 
