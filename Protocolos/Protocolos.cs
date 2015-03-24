@@ -92,7 +92,8 @@ namespace Protocolos
             if(IpV4Protocol.ServiceSpecificConnectionOrientedProtocolInAMultilinkAndConnectionlessEnvironment!= ip.Protocol){
                 TB_datos.AppendText("Numero de Bytes: " + packet.Count + " Protocolos: " + ip.Protocol + " Ip Origen: " + ip.Source + " Ip Destino: " + ip.Destination + "\n");
                 try{
-                    TB_datos.AppendText("Numero de Paquetes: " + packet.Count + " Protocolos: " + ip6.IpV4.Protocol + " Ip Origen: " + ip6.Source + " Ip Destino: " + ip6.CurrentDestination +"\n");
+                    TB_datos.AppendText("Numero de Paquetes: " + packet.Count + " Protocolos: " + ip6.IpV4.Protocol + " Ip Origen: " + ip6.Source + " Ip Destino: " + ip6.CurrentDestination + "\n");
+                        LB_flow.Items.Add(ip6.Source+"------>"+ip6.CurrentDestination);
                     if (!htProtocolos.ContainsKey(ip6.IpV4.Protocol))
                     {
                         htProtocolos.Add(ip6.IpV4.Protocol, 1);
@@ -175,13 +176,25 @@ namespace Protocolos
 
         private void F_protocolos_FormClosing(object sender, FormClosingEventArgs e)
         {
-            try
+
+            DialogResult salir = new DialogResult();
+            Form frsalir = new Form();
+            salir = MessageBox.Show("Salir?","Salir",MessageBoxButtons.OKCancel,MessageBoxIcon.Question);
+
+            if (salir == DialogResult.OK)
             {
-                hilo.Abort();
+
+                try
+                {
+                    hilo.Abort();
+                }
+                catch { }
             }
-            catch { }
-            
-            DialogResult salir = MessageBox.Show("Salir","Seguro desea salir",MessageBoxButtons.YesNo);
+            else
+            {
+                e.Cancel = true;
+            }
+           
         }
 
         private void Time_Graf_Tick(object sender, EventArgs e)
